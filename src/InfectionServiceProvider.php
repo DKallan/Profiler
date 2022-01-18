@@ -11,7 +11,7 @@ class InfectionServiceProvider extends ServiceProvider
     {
         foreach(Config::get('infection.classes') as $class) {
             $this->app->bind($class, function() use ($class) {
-                return infect($class);
+                return Infector::infect($class);
             });
         }
     }
