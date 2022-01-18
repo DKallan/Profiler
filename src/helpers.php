@@ -10,7 +10,7 @@ if(!function_exists("fake")) {
 
         preg_match("/class (?<class>[\w\_]+)/", $fakedContent, $scrambledClass);
 
-        $fakerCode = file_get_contents(__DIR__.'/faker.php');
+        $fakerCode = file_get_contents(__DIR__ . '/faker.php');
 
         $finishedFaker = preg_replace("/class Faker/", "class {$originalClass['class']}", $fakerCode);
 

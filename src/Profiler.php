@@ -4,7 +4,6 @@ namespace Rosterbuster\Profiler;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * Performance Profiler class.
