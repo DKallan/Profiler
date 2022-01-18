@@ -1,9 +1,11 @@
 <?php
 
-if(!function_exists("fake")) {
-    function fake(string $original)
+if(!function_exists("infect")) {
+    function infect(string $original)
     {
-        $fileContent = file_get_contents(base_path(str_replace("\\", "/", $original).".php"));
+        $reflection = new \ReflectionClass($original);
+
+        $fileContent = file_get_contents($reflection->getFileName());
 
         preg_match("/class (?<class>[\w\_]+)/", $fileContent, $originalClass);
         $fakedContent = preg_replace("/class ([\w\_]+)/", "class $1_original", $fileContent);
@@ -18,11 +20,7 @@ if(!function_exists("fake")) {
 
         $fakedContent = preg_replace("/\<\?php/", "", $fakedContent);
 
-        $instancedOriginal = eval($fakedContent."\n return app()->makeWith({$originalClass['class']}::class, ['original' => {$scrambledClass['class']}::class]);");
-
-        app()->bind($original, function () use ($instancedOriginal) {
-            return $instancedOriginal;
-        });
+        return eval($fakedContent."\n return app()->makeWith({$originalClass['class']}::class, ['original' => {$scrambledClass['class']}::class]);");
     }
 }
 
