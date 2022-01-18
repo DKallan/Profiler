@@ -1,0 +1,25 @@
+{
+    "name": "rosterbuster/profiler",
+    "description": "This program injects itself like a virus and tells you the performance from certain code.",
+    "type": "library",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Rosterbuster\\Profiler\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Danilo Kallan",
+            "email": "danilokallan@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^6.0",
+        "illuminate/contracts": "^6.0"
+    }
+}
